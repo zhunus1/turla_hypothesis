@@ -5,30 +5,16 @@ from locations.models import (
 from loyalties.models import (
     PromoCode,
 ) 
-from customers.models import (
-    Customer,
-) 
 
 # Create your models here.
 class Rent(models.Model):
 
-    customer = models.ForeignKey(
-        verbose_name = "Customer",
-        to = Customer,
-        related_name = 'rents',
-        on_delete = models.CASCADE,
-    )
-
     start_date = models.DateTimeField(
         verbose_name = "Start date",
-        blank = True,
-        null = True
     )
 
     end_date = models.DateTimeField(
         verbose_name = "End date",
-        blank = True,
-        null = True
     )
 
     pick_up = models.ManyToManyField(
@@ -67,9 +53,6 @@ class Rent(models.Model):
         verbose_name = "Rent"
         verbose_name_plural = "Rents"
         ordering = ('-created',)
-        
-    def __str__(self):
-        return '%s - %s' % (self.customer.name, self.customer.phone_number)
     
     @property
     def total_cost(self):

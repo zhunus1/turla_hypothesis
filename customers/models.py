@@ -1,6 +1,8 @@
 from django.db import models
 from phonenumber_field.modelfields import PhoneNumberField
-
+from rents.models import (
+    Rent,
+)
 # Create your models here.
 
 class Customer(models.Model):
@@ -12,6 +14,13 @@ class Customer(models.Model):
 
     phone_number = PhoneNumberField(
         verbose_name = "Phone number",
+    )
+
+    rent = models.OneToOneField(
+        verbose_name = "Rent",
+        to = Rent,
+        related_name = 'customer',
+        on_delete = models.CASCADE,
     )
     
     created = models.DateTimeField(
