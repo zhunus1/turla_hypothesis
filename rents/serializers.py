@@ -9,8 +9,7 @@ class RentCreateSearializer(serializers.ModelSerializer):
         fields = (
             'start_date',
             'end_date',
-            'pick_up',
-            'drop_off',
+            'location',
             'promo_code',   
         )
  

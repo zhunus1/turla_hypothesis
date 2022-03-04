@@ -17,16 +17,10 @@ class Rent(models.Model):
         verbose_name = "End date",
     )
 
-    pick_up = models.ManyToManyField(
+    location = models.ManyToManyField(
         verbose_name = "Pick up",
         to = Location,
         related_name = 'rents_pick_up',
-    )
-
-    drop_off = models.ManyToManyField(
-        verbose_name = "Drop off",
-        to = Location,
-        related_name = 'rents_drop_off',
     )
 
     promo_code = models.OneToOneField(
