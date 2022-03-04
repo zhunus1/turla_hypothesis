@@ -12,3 +12,11 @@ class LocationSearializer(serializers.ModelSerializer):
             'id',
             'name',
         )
+        
+class RegionSearializer(serializers.ModelSerializer):
+    class Meta:
+        model = Region
+        fields = (
+            'id',
+            'name',
+        )

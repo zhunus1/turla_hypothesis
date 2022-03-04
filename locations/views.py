@@ -4,9 +4,11 @@ from rest_framework.filters import SearchFilter
 from django_filters.rest_framework import DjangoFilterBackend
 from .models import (
     Location,
+    Region,
 )
 from .serializers import (
     LocationSearializer,
+    RegionSearializer
 )
 from .filters import (
     LocationFilter,
@@ -19,3 +21,8 @@ class LocationViewSet(viewsets.ReadOnlyModelViewSet):
     filter_backends = (SearchFilter, DjangoFilterBackend,)
     search_fields = ('name', 'region__name')
     filter_class = LocationFilter
+
+
+class RegionViewSet(viewsets.ReadOnlyModelViewSet):
+    queryset = Region.objects.all()
+    serializer_class = RegionSearializer

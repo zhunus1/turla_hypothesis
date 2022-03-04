@@ -27,6 +27,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env('SECRET_KEY')
 
+TELEGRAM_BOT_API = env('TELEGRAM_BOT_API')
+
 ALLOWED_HOSTS = list([host.strip() for host in os.environ.get('ALLOWED_HOSTS').split(';')])
 
 # Application definition
@@ -39,6 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'django_q',
     'phonenumber_field',
     'django_filters',
     'djmoney',
@@ -78,6 +81,22 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'turla_hypothesis.wsgi.application'
 
+Q_CLUSTER = {
+    'name': 'turla_hypothesis',
+    'workers': 8,
+    'recycle': 500,
+    'timeout': 60,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Django Q',
+    'redis': {
+        'host': '127.0.0.1',
+        'port': 6379,
+        'db': 0, 
+    }
+}
 
 # Database
 # https://docs.djangoproject.com/en/4.0/ref/settings/#databases

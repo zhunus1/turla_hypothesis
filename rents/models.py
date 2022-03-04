@@ -23,10 +23,10 @@ class Rent(models.Model):
         related_name = 'rents_pick_up',
     )
 
-    promo_code = models.OneToOneField(
+    promo_code = models.ForeignKey(
         verbose_name = "Promo code",
         to = PromoCode,
-        related_name = 'rent',
+        related_name = 'rents',
         on_delete = models.CASCADE,
         null = True,
         blank = True,
