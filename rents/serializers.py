@@ -3,6 +3,7 @@ from .models import (
     Rent,
 )
 
+
 class RentCreateSearializer(serializers.ModelSerializer):
     class Meta:
         model = Rent
@@ -12,7 +13,7 @@ class RentCreateSearializer(serializers.ModelSerializer):
             'location',
             'promo_code',   
         )
- 
+     
 class RentReturnSearializer(serializers.ModelSerializer):
     class Meta:
         model = Rent
