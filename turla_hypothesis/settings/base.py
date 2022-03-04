@@ -93,7 +93,7 @@ Q_CLUSTER = {
     'label': 'Django Q',
     'redis': {
         'host': '127.0.0.1',
-        'port': 6378,
+        'port': 6379,
         'db': 0, 
     }
 }
