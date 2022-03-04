@@ -63,11 +63,11 @@ class Region(models.Model):
 
 class Location(models.Model):
 
-    city = models.ForeignKey(
+    region = models.ForeignKey(
         to = Region, 
         on_delete = models.CASCADE,
         related_name = 'locations',
-        verbose_name = "City",
+        verbose_name = "Region",
     )
 
     name = models.CharField(

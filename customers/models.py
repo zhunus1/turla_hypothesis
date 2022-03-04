@@ -10,7 +10,9 @@ class Customer(models.Model):
         verbose_name = "Name",
     )
 
-    phone_number = PhoneNumberField()
+    phone_number = PhoneNumberField(
+        verbose_name = "Phone number",
+    )
     
     created = models.DateTimeField(
         verbose_name = "Created",
@@ -21,7 +23,6 @@ class Customer(models.Model):
         verbose_name = "Updated",
         auto_now = True,
     )
-
 
     class Meta:
 
