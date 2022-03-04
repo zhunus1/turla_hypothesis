@@ -3,7 +3,7 @@ from .models import (
     Rent,
 )
 
-class RentSearializer(serializers.ModelSerializer):
+class RentCreateSearializer(serializers.ModelSerializer):
     class Meta:
         model = Rent
         fields = (
@@ -14,3 +14,11 @@ class RentSearializer(serializers.ModelSerializer):
             'promo_code',   
         )
  
+class RentReturnSearializer(serializers.ModelSerializer):
+    class Meta:
+        model = Rent
+        fields = (
+            'id',
+            'total_cost',
+            'total_cost_discount',  
+        )

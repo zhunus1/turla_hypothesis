@@ -56,22 +56,22 @@ class Rent(models.Model):
     
     @property
     def total_cost(self):
-        return (self.start_date - self.end_date).hours * 250
+        return ((self.end_date - self.start_date)//3600 * 250)
 
     @property
     def total_cost_discount(self):
         try:
             promo_rule = self.promo_code.promo_rule
             if promo_rule.promo_type == 'Min hours':
-                difference = (self.start_date - self.end_date).hours
+                difference = (self.end_date - self.start_date)//3600
                 if difference > self.promo_code.required_hours:
-                    return ((self.start_date - self.end_date).hours * 250) - (self.promo_code.bonus_hours * 250)
+                    return (difference * 250) - (self.promo_code.bonus_hours * 250)
             elif promo_rule.promo_type == 'First hours':
-                difference = (self.start_date - self.end_date).hours
+                difference = (self.end_date - self.start_date)//3600
                 return (self.promo_code.bonus_hours * 125) + (difference - self.promo_code.bonus_hours) * 250
             elif promo_rule.promo_type == 'Additional hours':
-                return ((self.start_date - self.end_date).hours * 250) - (self.promo_code.bonus_hours * 250)
+                return ((self.end_date - self.start_date)//3600 * 250) - (self.promo_code.bonus_hours * 250)
             else:
-                return ((self.start_date - self.end_date).hours * 250) * (self.promo_code.discount_percentage/100)
+                return ((self.end_date - self.start_date)//3600 * 250) * (self.promo_code.discount_percentage/100)
         except:
-            return (self.start_date - self.end_date).hours * 250
+            return (self.end_date - self.start_date)//3600 * 250
