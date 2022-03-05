@@ -8,6 +8,7 @@ from customers.models import (
     Customer,
 )
 from django_q.tasks import async_task
+from dateutil.relativedelta import relativedelta
 
 bot_token = settings.TELEGRAM_BOT_API
 
@@ -18,8 +19,9 @@ def send_telegram(message):
 @receiver(post_save, sender=Customer)
 def save_form(sender, instance, created, **kwargs):
     if created:
-        start_date = instance.rent.start_date
-        end_date = instance.rent.end_date
+        start_date = instance.rent.start_date.strftime("%Y-%m-%d %H:%M:%S")
+        end_date = instance.rent.end_date.strftime("%Y-%m-%d %H:%M:%S")
+        total_hours = relativedelta(instance.rent.end_date, instance.rent.start_date)
         location = instance.rent.location.name
         try:
             promo_code = instance.rent.promo_code.code
@@ -33,7 +35,7 @@ def save_form(sender, instance, created, **kwargs):
         name = instance.name
         phone_number = instance.phone_number
 
-        message = "Заявка №:%s \nДата начала: %s \nДата окончания: %s \nМестоположение: %s \nПромо код: %s \nИмя клиента: %s \nТелефон: %s \nМожно звонить на ватсап: %s" % (instance.id, start_date, end_date, location, promo_code, name, phone_number, whatsapp_text) 
+        message = "Заявка №:%s \nДата начала: %s \nДата окончания: %s \nВремя аренды: %s \nМестоположение: %s \nПромо код: %s \nИмя клиента: %s \nТелефон: %s \nМожно звонить на ватсап: %s" % (instance.id, start_date, end_date,("Часы: %s | Минуты: %s" % (total_hours.hours, total_hours.minutes)), location, promo_code, name, phone_number, whatsapp_text) 
         
         async_task('rents.signals.send_telegram', message)
         
