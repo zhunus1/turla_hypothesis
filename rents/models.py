@@ -50,8 +50,8 @@ class Rent(models.Model):
     
     @property
     def total_cost(self):
-        return (self.end_date - self.start_date).total_seconds()//3600 * 250
+        return ((self.end_date - self.start_date).total_seconds()//3600) * 250
 
     @property
     def total_cost_discount(self):
-        return ((self.end_date - self.start_date).total_seconds()//3600 * 250) - 250
+        return (((self.end_date - self.start_date).total_seconds()//3600) * 250) - 250
