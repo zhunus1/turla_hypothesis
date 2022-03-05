@@ -9,5 +9,6 @@ class CustomerSerializer(serializers.ModelSerializer):
         fields = (
             'name',
             'phone_number',
-            'rent'
+            'rent',
+            'is_whatsapp',
         )

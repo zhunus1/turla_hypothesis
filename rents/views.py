@@ -16,7 +16,6 @@ from .serializers import (
 class RentView(APIView):
 
     def post(self, request):
-
         serializer = RentCreateSearializer(data=request.data)
         if serializer.is_valid():
             rent = serializer.save()

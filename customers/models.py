@@ -16,6 +16,11 @@ class Customer(models.Model):
         verbose_name = "Phone number",
     )
 
+    is_whatsapp = models.BooleanField(
+        verbose_name = "Is WhatsApp",
+        default = False,
+    )
+
     rent = models.OneToOneField(
         verbose_name = "Rent",
         to = Rent,
@@ -41,3 +46,4 @@ class Customer(models.Model):
         
     def __str__(self):
         return self.name
+    
