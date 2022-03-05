@@ -17,8 +17,7 @@ class Customer(models.Model):
     )
 
     is_whatsapp = models.BooleanField(
-        verbose_name = "Is WhatsApp",
-        default = False,
+        verbose_name = "Is whatsapp",
     )
 
     rent = models.OneToOneField(
