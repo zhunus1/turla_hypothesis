@@ -4,4 +4,8 @@ from .models import (
 )
 
 # Register your models here.
-admin.site.register(Customer)
+class CustomerAdmin(admin.ModelAdmin):
+    pass
+
+# Register the admin class with the associated model
+admin.site.register(Customer, CustomerAdmin)
