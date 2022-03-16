@@ -10,5 +10,6 @@ class CustomerSerializer(serializers.ModelSerializer):
             'name',
             'phone_number',
             'rent',
+            'transfer',
             'is_whatsapp',
         )

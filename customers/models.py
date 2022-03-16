@@ -3,6 +3,9 @@ from phonenumber_field.modelfields import PhoneNumberField
 from rents.models import (
     Rent,
 )
+from transfers.models import (
+    Transfer,
+) 
 # Create your models here.
 
 class Customer(models.Model):
@@ -23,8 +26,19 @@ class Customer(models.Model):
     rent = models.OneToOneField(
         verbose_name = "Rent",
         to = Rent,
-        related_name = 'customer',
+        related_name = 'customer_rent',
         on_delete = models.CASCADE,
+        null = True,
+        blank = True,
+    )
+
+    transfer = models.OneToOneField(
+        verbose_name = "Transfer",
+        to = Transfer,
+        related_name = 'customer_transfer',
+        on_delete = models.CASCADE,
+        null = True,
+        blank = True,
     )
     
     created = models.DateTimeField(

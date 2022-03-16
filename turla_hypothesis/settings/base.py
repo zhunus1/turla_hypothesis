@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'rents',
     'loyalties',
     'customers',
+    'transfers',
 ]
 
 MIDDLEWARE = [

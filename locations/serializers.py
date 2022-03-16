@@ -20,3 +20,6 @@ class RegionSearializer(serializers.ModelSerializer):
             'id',
             'name',
         )
+        
+class GeoSearializer(serializers.Serializer):
+    coordinates = serializers.CharField()
