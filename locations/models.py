@@ -32,7 +32,7 @@ class Region(models.Model):
     country = models.ForeignKey(
         to = Country, 
         on_delete = models.CASCADE,
-        related_name='cities',
+        related_name='regions',
         verbose_name = "Country",
     )
 

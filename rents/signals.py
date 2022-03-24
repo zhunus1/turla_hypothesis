@@ -48,6 +48,7 @@ def save_form(sender, instance, created, **kwargs):
                 drop_off = instance.transfer.drop_off.name
             except:
                 drop_off = "Отсутствует"
+               
             try:
                 promo_code = instance.transfer.promo_code.code
             except:

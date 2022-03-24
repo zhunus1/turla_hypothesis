@@ -22,9 +22,10 @@ class Transfer(models.Model):
         max_length = 255,
     )
 
-    drop_off = models.ManyToManyField(
+    drop_off = models.ForeignKey(
         verbose_name = "Drop off",
         to = Location,
+        on_delete = models.CASCADE,
         related_name = 'transfers',
         blank = True,
     )
